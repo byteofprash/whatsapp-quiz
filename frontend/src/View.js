@@ -19,8 +19,9 @@ function View() {
               as="h1"
               fontSize={["fontSize20", "fontSize40", "fontSize60"]}
               color={["colorTextBrandHighlight", "colorTextSuccess", "colorTextError"]}
+              style={{}}
             >
-              Hello
+             Leaderboard 
             </Text>
           </Box>
         </Flex >
@@ -29,7 +30,7 @@ function View() {
             <SortableColumnsDataGrid handleSelectedUser={handleSelectedUser} />
           </Box>
         </Flex>
-       { selectedUser && <p> Showing the answers for {selectedUser[1]} </p> }
+       { selectedUser && <p> Showing the answers for <b>{selectedUser[1]}</b> </p> }
        { selectedUser &&
         <Flex grow>
           <Box>

@@ -32,7 +32,8 @@ exports.handler = function(context, event, callback) {
               answers.push({
                 "question": question.value.question, 
                 "yourAnswer": question.value[`choice_${yourAnswer}`],
-                "rightAnswer": question.value[`choice_${rightAnswer}`]
+                "rightAnswer": question.value[`choice_${rightAnswer}`],
+                "correct": yourAnswer == rightAnswer? true: false
               })
             }
           })

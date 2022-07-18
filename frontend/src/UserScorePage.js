@@ -7,7 +7,7 @@ import {
   DataGridBody,
   DataGridCell,
 } from "@twilio-paste/core/data-grid";
-import { TableHeaderData, UserScoreData, UserScoreHeader } from "./constants";
+import { UserScoreHeader } from "./constants";
 import axios from 'axios'
 
 function UserScore({ userPhone }) {
@@ -29,16 +29,24 @@ function UserScore({ userPhone }) {
           <DataGridHeader>{UserScoreHeader[0]}</DataGridHeader>
           <DataGridHeader>{UserScoreHeader[1]}</DataGridHeader>
           <DataGridHeader>{UserScoreHeader[2]}</DataGridHeader>
+          <DataGridHeader>{UserScoreHeader[3]}</DataGridHeader>
         </DataGridRow>
       </DataGridHead>
       <DataGridBody>
         {userData.map((row, rowIndex) => (
           <DataGridRow key={"row-" + rowIndex}>
-            {row.map((col, colIndex) => (
-              <DataGridCell key={"cell-" + rowIndex + "-" + colIndex}>
-                {col}
+              <DataGridCell key={"cell-" + rowIndex + "-0"}>
+                {userData[rowIndex][0]}
               </DataGridCell>
-            ))}
+              <DataGridCell key={"cell-" + rowIndex + "-0"}>
+                {userData[rowIndex][1]}
+              </DataGridCell>
+              <DataGridCell key={"cell-" + rowIndex + "-0"}>
+                {userData[rowIndex][2]}
+              </DataGridCell>
+              <DataGridCell key={"cell-" + rowIndex + "-0"}>
+                {userData[rowIndex][3]? "✅" : "❌"}
+              </DataGridCell>
           </DataGridRow>
         ))}
       </DataGridBody>
@@ -47,3 +55,13 @@ function UserScore({ userPhone }) {
 }
 
 export default UserScore;
+/*
+ {row.map((col, colIndex) => (
+              <DataGridCell key={"cell-" + rowIndex + "-" + colIndex}>
+                <div style={{color:row[1]!=row[2]? "red": ""}}>
+                    {col}
+                </div>
+              </DataGridCell>
+            ))}
+  
+ */

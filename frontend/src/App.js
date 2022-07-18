@@ -9,7 +9,7 @@ import {
   DataGridBody,
   DataGridCell,
 } from "@twilio-paste/core/data-grid";
-import { TableHeaderData, TableBodyData, UserScoreHeader } from "./constants";
+import { TableHeaderData, UserScoreHeader } from "./constants";
 import axios from 'axios'
 
 
@@ -30,24 +30,22 @@ const simpleComparator = (
 
 const numColumns = TableHeaderData.length;
 const initialHeaderData = [...new Array(numColumns)].map((_, index) =>
-  index === 0 ? "ascending" : "none"
-);
-const initialBodyData = TableBodyData.sort((a, b) =>
-  simpleComparator(a, b, false, 1)
+  index === 2 ? "descending" : "none"
 );
 
 export const SortableColumnsDataGrid = ({handleSelectedUser}) => {
   const [sortedColumns, setSortedColumns] = React.useState(initialHeaderData);
-  // const [sortedData, setSortedData] = React.useState(initialBodyData);
   const [sortedData, setSortedData] = React.useState([]);
   const [userData, setUserData] = React.useState([]);
+  const [highScore, setHighScore] = React.useState([]);
   let getData = async () => {
     const { data } = await axios.get(`/user/users`);
     let scoreData = data.map((result) => [result.phone, result.name, result.total_points]).sort((a, b) =>
-                      simpleComparator(a, b, false, 1)) 
-    let userData = data.map(result => [result.name, result.total_points]).sort((a, b) =>
-                      simpleComparator(a, b, false, 1)) 
+                      simpleComparator(a, b, false, 2)) 
     setSortedData(scoreData);
+    let scores = [...new Set(data.map((result) => result.total_points))].sort().reverse()
+    console.log(scores)
+    setHighScore(scores)
     return scoreData
   };
   React.useEffect(() => {
@@ -89,20 +87,11 @@ export const SortableColumnsDataGrid = ({handleSelectedUser}) => {
         <DataGridRow>
           <DataGridHeader aria-sort={sortedColumns[0]} data-testid="header">
             <Box display="flex" alignItems="center" columnGap="space20">
-              {TableHeaderData[0]}
-              <DataGridHeaderSort
-                direction={sortedColumns[0]}
-                onClick={() => handleSortingColumn(0)}
-                data-testid="header-sort"
-              />
-            </Box>
-          </DataGridHeader>
-          <DataGridHeader aria-sort={sortedColumns[1]}>
-            <Box display="flex" alignItems="center" columnGap="space20">
               {TableHeaderData[1]}
               <DataGridHeaderSort
                 direction={sortedColumns[1]}
                 onClick={() => handleSortingColumn(1)}
+                data-testid="header-sort"
               />
             </Box>
           </DataGridHeader>
@@ -115,40 +104,29 @@ export const SortableColumnsDataGrid = ({handleSelectedUser}) => {
               />
             </Box>
           </DataGridHeader>
-          <DataGridHeader aria-sort={sortedColumns[3]}>
-            <Box display="flex" alignItems="center" columnGap="space20">
-              {TableHeaderData[3]}
-              <DataGridHeaderSort
-                direction={sortedColumns[3]}
-                onClick={() => handleSortingColumn(3)}
-              />
-            </Box>
-          </DataGridHeader>
-          <DataGridHeader aria-sort={sortedColumns[4]}>
-            <Box display="flex" alignItems="center" columnGap="space20">
-              {TableHeaderData[4]}
-              <DataGridHeaderSort
-                direction={sortedColumns[4]}
-                onClick={() => handleSortingColumn(4)}
-              />
-            </Box>
-          </DataGridHeader>
         </DataGridRow>
       </DataGridHead>
       <DataGridBody>
         {sortedData.map((row, rowIndex) => (
           <DataGridRow key={`${row[0]}-${row[1]}`}>
-            {row.slice(1).map((col, colIndex) => (
-              <DataGridCell key={`${col}-${colIndex}`} >
-                <a onClick={() => handleSelectedUser(row)}>
-                    {col}
-                </a>
-              </DataGridCell>
-            ))}
+            <DataGridCell key={`data${row[0]}-0`} >
+              <div onClick={() => handleSelectedUser(row)} style={{cursor: "pointer"}}>
+                  {sortedData[rowIndex][1]}
+              </div>
+            </DataGridCell>
+            <DataGridCell key={`data${row[0]}-0`} >
+              <div onClick={() => handleSelectedUser(row)} style={{cursor: "pointer"}}>
+                {sortedData[rowIndex][2]}
+            <span>
+                {sortedData[rowIndex][2] == highScore[0]? "🏆": ""}
+                {sortedData[rowIndex][2] == highScore[1]? "🥈": ""}
+                {sortedData[rowIndex][2] == highScore[2]? "🥉": ""}
+            </span>
+              </div>
+            </DataGridCell>
           </DataGridRow>
         ))}
       </DataGridBody>
     </DataGrid>
   );
-  /* eslint-enable react/no-array-index-key */
 };
