@@ -15,7 +15,7 @@ function UserScore({ userPhone }) {
   const [userData, setUserData] = React.useState([]);
   let getData = async () => {
     setUserData([])
-    const { data } = await axios.get(`https://waquiz-9106-dev.twil.io/quiz/userPerformance`, { params:{phone: userPhone[0]}});
+    const { data } = await axios.get(`/quiz/userPerformance`, { params:{phone: userPhone[0]}});
     setUserData(data.map((answer) => [answer.question, answer.rightAnswer, answer.yourAnswer]))
   };
   React.useEffect(() => {
