@@ -28,7 +28,7 @@ exports.handler = function(context, event, callback) {
                                 executionPromises.push(executionPromise) 
                             } 
                         })
-                        Promise.allSettled(executionsPromises).then(executions => {
+                        Promise.allSettled(executionPromises).then(executions => {
                             callback(null, "200 - Success")
                         })
                     })
