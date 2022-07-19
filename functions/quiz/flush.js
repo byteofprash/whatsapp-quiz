@@ -17,16 +17,20 @@ exports.handler = function(context, event, callback) {
                     .executions
                     .list()
                     .then(executions => {
+                        const executionPromises = []
                         executions.forEach(execution => {
                             if (execution.status === 'active') {
-                                client.studio.v2.flows(context.QUIZ_FLOW_SID)
+                                const executionPromise = client.studio.v2.flows(context.QUIZ_FLOW_SID)
                                     .executions(execution.sid)
                                     .update({status: 'ended'})
                                     .then(execution => console.log(`Ended execution ${execution.sid}`))
                                     .catch(err => console.log(err))
-                            }  
+                                executionPromises.push(executionPromise) 
+                            } 
                         })
-                        callback(null, "200 - Success")
+                        Promise.allSettled(executionsPromises).then(executions => {
+                            callback(null, "200 - Success")
+                        })
                     })
                     .catch(err => {console.log(err); callback(err)})
   }
