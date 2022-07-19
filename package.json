@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "twilio-run",
-    "deploy": "twilio-run deploy"
+    "deploy": "twilio-run deploy",
+    "build-deploy": "cd frontend && npm run build && cp -a ./build/. ../assets && cd .. && twilio serverless:deploy"
   },
   "dependencies": {
     "@twilio/runtime-handler": "1.2.3",
