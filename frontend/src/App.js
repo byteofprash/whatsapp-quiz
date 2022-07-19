@@ -39,11 +39,11 @@ export const SortableColumnsDataGrid = ({handleSelectedUser}) => {
   const [userData, setUserData] = React.useState([]);
   const [highScore, setHighScore] = React.useState([]);
   let getData = async () => {
-    const { data } = await axios.get(`/user/users`);
+    const { data } = await axios.get(`https://waquiz-7645-dev.twil.io/user/users`);
     let scoreData = data.map((result) => [result.phone, result.name, result.total_points]).sort((a, b) =>
                       simpleComparator(a, b, false, 2)) 
     setSortedData(scoreData);
-    let scores = [...new Set(data.map((result) => result.total_points))].sort().reverse()
+    let scores = [...new Set(data.map((result) => result.total_points))].sort((a,b) => {return b-a})
     console.log(scores)
     setHighScore(scores)
     return scoreData
