@@ -7,21 +7,34 @@ import {
   DataGridBody,
   DataGridCell,
 } from "@twilio-paste/core/data-grid";
+import {Spinner} from '@twilio-paste/core/spinner';
 import { UserScoreHeader } from "./constants";
 import axios from 'axios'
 
 function UserScore({ userPhone }) {
 
   const [userData, setUserData] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState([false])
+
   let getData = async () => {
+    setIsLoading(true)
     setUserData([])
     const { data } = await axios.get(`/quiz/userPerformance`, { params:{phone: userPhone[0]}});
-    setUserData(data.map((answer) => [answer.question, answer.rightAnswer, answer.yourAnswer]))
+    setIsLoading(false)
+    setUserData(data.map((answer) => [answer.question, answer.rightAnswer, answer.yourAnswer, answer.correct]))
   };
+
   React.useEffect(() => {
     getData();
   }, [userPhone]);
  
+
+  if (isLoading) {
+    return (
+      <Spinner size="sizeIcon70" decorative={false} title="Loading" />
+    )
+  }
+
   return (
     <DataGrid aria-label="User information table" striped>
       <DataGridHead >
@@ -45,7 +58,7 @@ function UserScore({ userPhone }) {
                 {userData[rowIndex][2]}
               </DataGridCell>
               <DataGridCell key={"cell-" + rowIndex + "-0"}>
-                {userData[rowIndex][3]? "✅" : "❌"}
+                {userData[rowIndex][3] ? "✅" : "❌"}
               </DataGridCell>
           </DataGridRow>
         ))}
