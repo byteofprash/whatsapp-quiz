@@ -23,14 +23,14 @@ exports.handler = function(context, event, callback) {
                                 const executionPromise = client.studio.v2.flows(context.QUIZ_FLOW_SID)
                                     .executions(execution.sid)
                                     .update({status: 'ended'})
-                                    .then(execution => console.log(`Ended execution ${execution.sid}`))
-                                    .catch(err => console.log(err))
                                 executionPromises.push(executionPromise) 
                             } 
                         })
-                        Promise.allSettled(executionPromises).then(executions => {
+                        Promise.allSettled(executionPromises)
+                        .then(executions => {
                             callback(null, "200 - Success")
                         })
+                        .catch(err => console.log(err))
                     })
                     .catch(err => {console.log(err); callback(err)})
   }
