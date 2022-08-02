@@ -7,7 +7,7 @@ const getQuestion = (questionTable, base, event) => {
     base(questionTable).select({filterByFormula: `AND(({question_num} = "${event.fields.question_num}"), ({quiz_num} = "${event.fields.quiz_num}") )`})
       .firstPage((err, questions) => {
         if(err){
-          console.log(err)
+          console.error(err)
           reject(err)
         }
         if(questions.length < 1){

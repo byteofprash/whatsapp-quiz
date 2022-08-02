@@ -27,9 +27,4 @@ exports.handler = function(context, event, callback) {
             });
         }
   })
-  // findUser.findUser(base, "4917665045681")
-  //   .then(user =>{
-  //     console.log("User is", user);
-  //   })
-  
 };

@@ -30,16 +30,15 @@ exports.handler = function(context, event, callback) {
                         .then(executions => {
                             callback(null, "200 - Success")
                         })
-                        .catch(err => console.log(err))
+                        .catch(err => console.error(err))
                     })
-                    .catch(err => {console.log(err); callback(err)})
+                    .catch(err => {console.error(err); callback(err)})
   }
 };
 
 
 const isAuthorized = (event, context) => {
     const quiz_key = context.QUIZ_KEY
-    console.log(event)
     if (event.quiz_key === quiz_key) {
         return true
     } else {

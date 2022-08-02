@@ -44,7 +44,6 @@ export const SortableColumnsDataGrid = ({handleSelectedUser}) => {
                       simpleComparator(a, b, false, 2)) 
     setSortedData(scoreData);
     let scores = [...new Set(data.map((result) => result.total_points))].sort((a,b) => {return b-a})
-    console.log(scores)
     setHighScore(scores)
     return scoreData
   };

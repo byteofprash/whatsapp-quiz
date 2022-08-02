@@ -36,7 +36,7 @@ exports.handler = function (context, event, callback) {
             .then((execution) => callback(null, execution.sid));
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   } else {
     const unauthorizedError = { statusCode: 401, message: "Unauthorized" };
     callback(JSON.stringify(unauthorizedError));
@@ -45,7 +45,6 @@ exports.handler = function (context, event, callback) {
 
 const isAuthorized = (event, context) => {
   const quiz_key = context.QUIZ_KEY;
-  console.log(event);
   if (event.quiz_key === quiz_key) {
     return true;
   } else {

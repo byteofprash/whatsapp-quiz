@@ -8,7 +8,7 @@ exports.handler = function(context, event, callback) {
     filterByFormula: `{phone} = "${event.phone}"`
   }).firstPage((err, events) => {
     if(err){
-      console.log(err)
+      console.error(err)
       reject("Error in your request", err);
     }
     if(events.length < 1){
@@ -39,7 +39,7 @@ exports.handler = function(context, event, callback) {
           })
           callback(null, answers)
         })
-        .catch(err => console.log(err)); 
+        .catch(err => console.error(err)); 
     }
   })
 };

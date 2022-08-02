@@ -15,7 +15,7 @@ exports.handler = function(context, event, callback) {
   }
   ], function(err, records){
       if(err) {
-        console.log(err)
+        console.error(err)
         callback("Could not add the event", err);
       }
       // else {
