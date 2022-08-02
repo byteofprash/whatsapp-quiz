@@ -34,7 +34,7 @@ TODO: Add how Airtable needs to be structured and which data need to be added ma
 ## Start the quiz
 
 ```bash
-curl -d quiz_key=123456 -d quiz_num=1 https://waquiz-1549-dev.twil.io/quiz/start
+curl -d quiz_key=123456 -d quiz_num=1 https://<replace-with-function-id>.twil.io/quiz/start
 ```
 
 ### Folder structure

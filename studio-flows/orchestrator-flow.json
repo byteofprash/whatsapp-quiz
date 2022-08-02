@@ -60,7 +60,7 @@
             "key": "name"
           }
         ],
-        "url": "https://waquiz-1549-dev.twil.io/user/add"
+        "url": "https://<replace-with-function-id>.twil.io/user/add"
       }
     },
     {
@@ -140,7 +140,7 @@
             "key": "phone"
           }
         ],
-        "url": "https://waquiz-1549-dev.twil.io/user/find"
+        "url": "https://<replace-with-function-id>.twil.io/user/find"
       }
     },
     {
@@ -163,7 +163,7 @@
         "channel": "{{trigger.message.ChannelSid}}",
         "from": "{{flow.channel.address}}",
         "to": "{{contact.channel.address}}",
-        "body": "Hey {{widgets.check_if_user_exists.parsed.name}} , you're already registered! We'll send you a message next time a quiz starts! In the meantime you can check the leaderboard out here: https://waquiz-1549-dev.twil.io/index.html"
+        "body": "Hey {{widgets.check_if_user_exists.parsed.name}} , you're already registered! We'll send you a message next time a quiz starts! In the meantime you can check the leaderboard out here: https://<replace-with-function-id>.twil.io/index.html"
       }
     },
     {

@@ -108,7 +108,7 @@
             "key": "question_num"
           }
         ],
-        "url": "https://waquiz-1549-dev.twil.io/quiz/quiz"
+        "url": "https://<replace-with-function-id>.twil.io/quiz/quiz"
       }
     },
     {
@@ -158,7 +158,7 @@
         "channel": "{{trigger.message.ChannelSid}}",
         "from": "{{flow.channel.address}}",
         "to": "{{contact.channel.address}}",
-        "body": "That's the end of the quiz. Check the leaderboard to see how you compare: https://waquiz-1549-dev.twil.io/index.html"
+        "body": "That's the end of the quiz. Check the leaderboard to see how you compare: https://<replace-with-function-id>.twil.io/index.html"
       }
     },
     {
@@ -304,7 +304,7 @@
             "key": "points"
           }
         ],
-        "url": "https://waquiz-1549-dev.twil.io/quiz/events"
+        "url": "https://<replace-with-function-id>.twil.io/quiz/events"
       }
     }
   ],
