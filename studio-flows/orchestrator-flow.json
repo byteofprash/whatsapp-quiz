@@ -86,7 +86,7 @@
         "service": "{{trigger.message.InstanceSid}}",
         "channel": "{{trigger.message.ChannelSid}}",
         "from": "{{flow.channel.address}}",
-        "body": "Looks like you haven't registered yet. Before starting we'll need the name of your quiz alter ego - feel free to get creative!",
+        "body": "Looks like you haven't registered yet. Before starting we'll need the name of your quiz alter ego - feel free to get creative!\n\nWe only use your phone number to notify you about this quiz and redact all data (messages & phone numbers) afterwards.",
         "timeout": "36000"
       }
     },
