@@ -17,7 +17,9 @@ Then you should see the URL of the function assets. This URL contains the funtio
 
 Then go to <https://twilio.com/console/studio> and create two new flows `quiz-flow` and `orchestrator-flow` based on the files in `/studio-flows`. 
 
-Fix the `orchestrator-flow` so that it links to the `quiz-flow` //TODO is this right?
+Fix the `orchestrator-flow` so that it links to the `quiz-flow` 
+
+Create a messaging service and add your number and WhatsApp number to the sender pool and the `webhook URL` of the `orchestrator-flow` as the integration.
 
 Create a new Airtable base and copy the `.env_example` to `.env` and replace all values before running the deploy command once again: //TODO: The varibable name is QUIZ_FLOW_SID but we actually need to link to the Orchestrator flow. This was confusing to me
 ```bash
