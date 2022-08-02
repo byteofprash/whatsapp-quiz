@@ -133,5 +133,5 @@ dist
 .pnp.*
 .DS_Store
 
-assets/
+assets/*
 frontend/build

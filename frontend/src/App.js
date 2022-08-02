@@ -111,7 +111,7 @@ export const SortableColumnsDataGrid = ({handleSelectedUser}) => {
           <DataGridRow key={`${row[0]}-${row[1]}`}>
             <DataGridCell key={`data${row[0]}-0`} >
               <div onClick={() => handleSelectedUser(row)} style={{cursor: "pointer"}}>
-                  {sortedData[rowIndex][1]}
+                  {sortedData[rowIndex][1] || sortedData[rowIndex][0]}
               </div>
             </DataGridCell>
             <DataGridCell key={`data${row[0]}-0`} >
