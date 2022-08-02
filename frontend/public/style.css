@@ -10,8 +10,8 @@
 }
 
 body {
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
   color: #0d122b;
   border-top: 5px solid #f22f46;
 }
@@ -44,7 +44,7 @@ main p {
 
 main p code {
   font-size: 16px;
-  font-family: 'Fira Mono', monospace;
+  font-family: "Fira Mono", monospace;
   color: #f22f46;
   background-color: #f9f9f9;
   box-shadow: inset 0 0 0 1px #e8e8e8;
